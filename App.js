@@ -1,39 +1,35 @@
-import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+/* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-export default function App() {
-  const [name, setName] = useState("");
+import Direction from './components/Direction';
+import JustifyContent from './components/justifyContent';
+import Position from './components/Position';
 
+
+
+
+
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="direction" component={Direction} />
+      <Tab.Screen name="position" component={Position} />
+      <Tab.Screen name="justContent" component={JustifyContent} />
+
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    color: "#FF0000", // Red color
-    fontSize: 50,
-    fontStyle: "italic",
-    alignItems: "center",
-  },
-  item: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    width: 300,
-    height: 50,
-    borderWidth: 2,
-    borderRadius: 20,
-    borderColor: "#FF0000",
-    textAlign: "center",
-  },
-});
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
